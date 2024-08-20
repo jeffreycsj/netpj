@@ -1,6 +1,6 @@
 /**
  * @file NetBuffer.h
- * @author jeffreychen (jeffreychen@chaocanshu.ai)
+ * @author jeffreychen
  * @brief 网络buffer
  * @version 0.1
  * @date 2024-8-19 10:42:26
@@ -11,10 +11,11 @@
 #pragma once
 #include <stdint.h>
 #include <vector>
+#include "NetBufferMgr.h"
 
 class NetBuffer {
 public:
-    NetBuffer(int32_t cap);
+    NetBuffer(int32_t cap = 1024);
     ~NetBuffer();
 
     /**
@@ -50,4 +51,8 @@ private:
     std::vector<char> m_buffer;
     int32_t m_len;
     int32_t m_startIdx;
+
+private:
+    friend class NetBufferMgr;
+    int32_t m_idx;
 };

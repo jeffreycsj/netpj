@@ -1,7 +1,7 @@
 #include "NetBuffer.h"
 #include <cstring>
 
-NetBuffer::NetBuffer(int32_t cap): m_len(0), m_startIdx(0)
+NetBuffer::NetBuffer(int32_t cap): m_len(0), m_startIdx(0), m_idx(-1)
 {
     m_buffer.resize(cap);
 }
