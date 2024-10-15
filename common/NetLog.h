@@ -10,6 +10,13 @@
  */
 #pragma once
 
+#ifdef OPEN_LOG
+    #define net_log_format(fmt) "%s:%d " fmt
+    #define net_log(fmt, ...) CNetLog::Inst().LogMessage(net_log_format(fmt), __FILE__, __LINE__, __VA_ARGS__);
+#else
+    #define net_log(fmt, ...)
+#endif
+
 #include <functional>
 class CNetLog {
 public:
