@@ -13,12 +13,6 @@ void CNetLog::LogMessage(const char *format, ...)
     int len = vsnprintf(NULL, 0, format, vaCopy);
     va_end(vaCopy);
 
-    if (len < 0) {
-        std::cerr << "Error formatting message." << std::endl;
-        va_end(vaArgs);
-        return;
-    }
-
     char* buffer = new char[len + 1];
     vsnprintf(buffer, len + 1, format, vaArgs);
 

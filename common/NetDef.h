@@ -52,7 +52,6 @@ struct TCPPreHeadData
     uint32_t m_head{0xCA0DA011};  // 魔数头
     char m_openID[64] = {0};         // openid
     char m_isReconnect{0};                   // 是否重连
-    char m_isTransparentConnection{false};    // 是否是透传数据的连接
     uint32_t m_connectResult{0};        // 如果连接被拒，这里带上被拒原因
 };
 
@@ -75,7 +74,6 @@ struct UDPHead
 
 using KCPHead = UDPHead;
 
-
 struct HandshakeData
 {
     uint32_t m_timestamp{0};        // 时间戳，由服务器返回的
@@ -84,7 +82,6 @@ struct HandshakeData
     char m_openID[64]{0};           // openid
     char m_isReconnect{0};         // 是否重连
 };
-
 
 // udp, tcp， kcp 的数据都是这个结构
 struct MsgDataHead
@@ -171,14 +168,8 @@ enum NETWORK_PACKET_TYPE
 };
 
 
-// 客户端主动关闭连接数据
+// 关闭连接数据
 struct NetworkPacketTypeCloseData
-{
-    uint32_t m_reason;
-};
-
-// 服务器主动关闭连接数据
-struct NetworkPacketTypeFinData
 {
     uint32_t m_reason;
 };
